@@ -38,8 +38,8 @@ st.title("Cancer Cell Image Classifictaion")
 
 #setting the main picture
 #st.image(
-    "https://thoneh.my/wp-content/uploads/2021/11/retina-detachment1-scaled-e1637129967126.jpg", 
-    caption = "Cancer cell classification")
+   # "https://thoneh.my/wp-content/uploads/2021/11/retina-detachment1-scaled-e1637129967126.jpg", 
+   # caption = "Cancer cell classification")
 
 #about the web app
 st.header("About the Web App")
