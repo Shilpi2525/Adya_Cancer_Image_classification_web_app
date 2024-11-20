@@ -40,7 +40,7 @@ def prediction(modelname, sample_image, IMG_SIZE = (224,224)):
 st.title("Cancer Cell Image Classifictaion")
 
 #setting the main picture
-st.image(IMAGE_URL, caption = "Cancer Cell Classification"
+st.image(IMAGE_URL, caption = "Cancer Cell Classification")
 
 #about the web app
 st.header("About the Web App")
