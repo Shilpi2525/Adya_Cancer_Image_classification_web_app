@@ -63,7 +63,7 @@ if image:
         st.image(image, caption = "Uploaded Image")
 
         #getting the predictions
-        label = prediction("Ishita_best_model_mobilenetV2.h5", image)
+        label = prediction("mobilenetv2_ep_30_lr_0.001.h5", image)
 
         #displaying the predicted label
         st.subheader("Prediction  **{}**".format(label))
