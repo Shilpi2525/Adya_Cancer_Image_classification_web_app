@@ -11,7 +11,7 @@ from PIL import Image
 def prediction(modelname, sample_image, IMG_SIZE = (224,224)):
 
     #labels
-    labels = ["Normal Retina","Dibetic Retinopathy","Media Haze","Optics Dics Cupping"]
+    labels = ['High squamous intra-epithelial lesion','Low squamous intra-epithelial lesion','Negative for Intraepithelial malignancy','Squamous cell carcinoma']
     labels.sort()
 
     try:
@@ -34,56 +34,39 @@ def prediction(modelname, sample_image, IMG_SIZE = (224,224)):
 #Building the website
 
 #title of the web page
-st.title("Retinal Disease Classifictaion")
+st.title("Cancer Cell Image Classifictaion")
 
 #setting the main picture
-st.image(
+#st.image(
     "https://thoneh.my/wp-content/uploads/2021/11/retina-detachment1-scaled-e1637129967126.jpg", 
-    caption = "Retinal Disease")
+    caption = "Cancer cell classification")
 
 #about the web app
 st.header("About the Web App")
 
 #details about the project
 with st.expander("Web App 🌐"):
-    st.subheader("Retinal Disease Predictions")
-    st.write("This web app can predict whether a given retina image shows signs of retinal diseases such as Normal Retina, Diabetic Retinopathy, Media Haze, or Optic Disc Cupping")
+    st.subheader("Cancer Cell Predictions")
+    st.write("My app is designed to predict and classify cancer cell images into one of the following categories :High squamous intra-epithelial lesion,Low squamous intra-epithelial lesion,Negative for Intraepithelial malignancy,Squamous cell carcinoma")
 
-#setting the tabs
-tab1, tab2 = st.tabs(['Image Upload 👁️', 'Camera Upload 📷'])
+#setting file uploader
+#you can change the label name as your preference
+image = st.file_uploader(label="Upload a cancer cell image",accept_multiple_files=False, help="Upload an image to classify them")
 
-#tab1
-with tab1:
-    #setting file uploader
-    #you can change the label name as your preference
-    image = st.file_uploader(label="Upload a retina image",accept_multiple_files=False, help="Upload an image to classify them")
-
-    if image:
-        #validating the image type
-        image_type = image.type.split("/")[-1]
-        if image_type not in ['jpg','jpeg','png','jfif']:
-            st.error("Invalid file type : {}".format(image.type), icon="🚨")
-        else:
-            #displaying the image
-            st.image(image, caption = "Uploaded Image")
-
-            #getting the predictions
-            label = prediction("Ishita_best_model_mobilenetV2.h5", image)
-
-            #displaying the predicted label
-            st.subheader("Your have  **{}**".format(label))
-
-with tab2:
-    #camera input
-    cam_image = st.camera_input("Please take a photo of the retina")
-
-    if cam_image:
+if image:
+     #validating the image type
+    image_type = image.type.split("/")[-1]
+    if image_type not in ['jpg','jpeg','png','jfif']:
+        st.error("Invalid file type : {}".format(image.type), icon="🚨")
+    else:
         #displaying the image
-        st.image(cam_image)
+        st.image(image, caption = "Uploaded Image")
 
         #getting the predictions
-        label = prediction("Ishita_best_model_mobilenetV2.h5", cam_image)
+        label = prediction("Ishita_best_model_mobilenetV2.h5", image)
 
         #displaying the predicted label
-        st.subheader("You have  **{}**".format(label))
+        st.subheader("Prediction  **{}**".format(label))
+
+
             
